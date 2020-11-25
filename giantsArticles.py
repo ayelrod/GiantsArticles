@@ -39,24 +39,24 @@ def main():
 	f.write('THE ATHLETIC:\n')
 
 	#ARTICLE 1
-	title = driver.find_element_by_xpath('/html/body/div[6]/div/div[2]/div[1]/div[2]/div/a/div[1]').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019)", "'", title)
+	title = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[2]/div/a/div[1]').text
+        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
-	article = driver.find_element_by_xpath('/html/body/div[6]/div/div[2]/div[1]/div[2]/div/a')
+	article = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[2]/div/a')
 	article.send_keys(webdriver.common.keys.Keys.RETURN)
 
 	link = driver.current_url
 
 	f.write('\n' + title)
 	f.write(': ' + link + '\n')
-
+	
 	#ARTICLE 2
 	driver.get('https://theathletic.com/team/sf-giants/')
 
-	title = driver.find_element_by_xpath('/html/body/div[6]/div/div[2]/div[1]/div[4]/div[1]/a/div[2]/div[2]/div/div[1]').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019)", "'", title)
+	title = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[3]/div/a/div[2]/div[2]/div/div[1]').text
+        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
-	article = driver.find_element_by_xpath('/html/body/div[6]/div/div[2]/div[1]/div[3]/div[1]/a')
+	article = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[3]/div/a')
 	article.send_keys(webdriver.common.keys.Keys.RETURN)	
 
 	link = driver.current_url
@@ -66,7 +66,7 @@ def main():
 
 	f.write('\n@GiantsArticles')
 	f.close()
-
+	
 	#TWEET
 	with open("tweet.txt", "r") as f:
 		api.update_status(f.read())
@@ -83,7 +83,7 @@ def main():
 
 	#ARTICLE 1
 	title = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/div/div[3]/a').text
-        title = re.sub(u"(\u2018|\u2019)", "'", title)
+        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
 	article = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/div/div[3]/a')
 	article.send_keys(webdriver.common.keys.Keys.RETURN)
@@ -92,12 +92,12 @@ def main():
 
 	f.write('\n' + title)
 	f.write(': ' + link + '\n')
-
+	
 	#ARTICLE 2
 	driver.get('https://www.sfchronicle.com/sports/giants/')
 
 	title = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/ul/li[1]/p/a').text
-        title = re.sub(u"(\u2018|\u2019)", "'", title)
+        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
 	article = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/ul/li[1]/p/a')
 	article.send_keys(webdriver.common.keys.Keys.RETURN)
@@ -108,7 +108,7 @@ def main():
 	f.write(': ' + link + '\n')
 
 	f.close()
-
+	
 	#TWEET IN THREAD
         with open("tweet.txt", "r") as f:
 		api.update_status(f.read(), in_reply_to_status_id=prevTweet)
@@ -122,22 +122,22 @@ def main():
 	#f.write('MERCURY NEWS:\n')
 
 	#ARTICLE 1
-	#title = driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/main/section[1]/article/div[1]/header/h4/a').text
-        #title = re.sub(u"(\u2018|\u2019)", "'", title)
+	#title = driver.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/main/section/article/div/header/h2/a/span').text
+        #title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
-	#article = driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/main/section[1]/article/div[1]/header/h4/a')
+	#article = driver.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/main/section/article/div/header/h2/a')
 	#article.send_keys(webdriver.common.keys.Keys.RETURN)
 
 	#link = driver.current_url
 
 	#f.write('\n' + title)
 	#f.write(': ' + link + '\n')
-
+	
 	#ARTICLE 2
 	#driver.get('https://www.mercurynews.com/sports/san-francisco-giants/')
 
 	#title = driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/main/section[1]/div[2]/article[1]/div[1]/header/h5/a').text
-        #title = re.sub(u"(\u2018|\u2019)", "'", title)
+        #title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
 	#article = driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/main/section[1]/div[2]/article[1]/div[1]/header/h5/a')
 	#article.send_keys(webdriver.common.keys.Keys.RETURN)
@@ -162,7 +162,7 @@ def main():
 	
 	#ARTICLE 1
 	title = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[1]/a').text
-        title = re.sub(u"(\u2018|\u2019)", "'", title)
+        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
 	article = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[1]/a')
 	article.send_keys(webdriver.common.keys.Keys.RETURN)
@@ -171,12 +171,12 @@ def main():
 
 	f.write('\n' + title)
 	f.write(': ' + link + '\n')
-
+	
 	#ARTICLE 2
 	driver.get('https://www.nbcsports.com/bayarea/giants')
 	
 	title = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[2]/a').text
-        title = re.sub(u"(\u2018|\u2019)", "'", title)
+        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
 	article = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[2]/a')
 	article.send_keys(webdriver.common.keys.Keys.RETURN)
@@ -187,7 +187,7 @@ def main():
 	f.write(': ' + link + '\n')
 
 	f.close()
-
+	
 	#TWEET IN THREAD
         with open("tweet.txt", "r") as f:
 		api.update_status(f.read(), in_reply_to_status_id=prevTweet)
@@ -204,7 +204,7 @@ def main():
 	article.send_keys(webdriver.common.keys.Keys.RETURN)
 
 	title = driver.find_element_by_xpath('/html/body/div[3]/div/section[2]/section[1]/div[1]/div/div/article/header/h1').text
-	title = re.sub(u"(\u2018|\u2019)", "'", title)
+	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 	
 	link = driver.current_url
 
@@ -218,7 +218,7 @@ def main():
 	article.send_keys(webdriver.common.keys.Keys.RETURN)
 
 	title = driver.find_element_by_xpath('/html/body/div[3]/div/section[2]/section[1]/div[1]/div/div/article/header/h1').text
-        title = re.sub(u"(\u2018|\u2019)", "'", title)	
+        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)	
 	
 	link = driver.current_url
 
@@ -226,7 +226,7 @@ def main():
         f.write(': ' + link)	
 
 	f.close()
-
+	
 	#TWEET IN THREAD
 	with open("tweet.txt", "r") as f:
 		api.update_status(f.read(), in_reply_to_status_id=prevTweet)
