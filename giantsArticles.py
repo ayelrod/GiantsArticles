@@ -231,6 +231,45 @@ def main():
 	with open("tweet.txt", "r") as f:
 		api.update_status(f.read(), in_reply_to_status_id=prevTweet)
 
+#AroundTheFoghorn-----------------------------------------------------------------------------------------
+	
+	f = open('tweet.txt', 'w+')
+	driver.get('https://aroundthefoghorn.com/')
+
+	f.write('Around The Foghorn:\n')
+
+	#ARTICLE 1
+	title = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[1]/div/header/h2/a').text
+        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+
+	article = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[1]/div/header/h2/a')
+	article.send_keys(webdriver.common.keys.Keys.RETURN)
+
+	link = driver.current_url
+
+	f.write('\n' + title)
+	f.write(': ' + link + '\n')
+	
+	#ARTICLE 2
+	driver.get('https://aroundthefoghorn.com/')
+
+	title = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[2]/div/header/h2/a').text
+        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+
+	article = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[2]/div/header/h2/a')
+	article.send_keys(webdriver.common.keys.Keys.RETURN)
+
+	link = driver.current_url
+
+	f.write('\n' + title)
+	f.write(': ' + link + '\n')
+
+	f.close()	
+
+	#TWEET IN THREAD
+	with open("tweet.txt", "r") as f:
+		api.update_status(f.read(), in_reply_to_status_id=prevTweet)
+	
 	driver.quit()	
 	
 main()
