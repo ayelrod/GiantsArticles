@@ -34,85 +34,94 @@ def main():
 	
 
 	#THE ATHLETIC-------------------------------------------------------------------------------------------------
-	driver.get('https://theathletic.com/team/sf-giants/')
+	try:
+		driver.get('https://theathletic.com/team/sf-giants/')
 
-	f.write('THE ATHLETIC:\n')
+		f.write('THE ATHLETIC:\n')
 
-	#ARTICLE 1
-	title = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[2]/div/a/div[1]').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+		#ARTICLE 1
+		title = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[2]/div/a/div[1]').text
+        	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
-	article = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[2]/div/a')
-	article.send_keys(webdriver.common.keys.Keys.RETURN)
+		article = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[2]/div/a')
+		article.send_keys(webdriver.common.keys.Keys.RETURN)
 
-	link = driver.current_url
+		link = driver.current_url
 
-	f.write('\n' + title)
-	f.write(': ' + link + '\n')
+		f.write('\n' + title)
+		f.write(': ' + link + '\n')
 	
-	#ARTICLE 2
-	driver.get('https://theathletic.com/team/sf-giants/')
+		#ARTICLE 2
+		driver.get('https://theathletic.com/team/sf-giants/')
 
-	title = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[3]/div/a/div[2]/div[2]/div/div[1]').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+		title = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[3]/div/a/div[2]/div[2]/div/div[1]').text
+        	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
-	article = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[3]/div/a')
-	article.send_keys(webdriver.common.keys.Keys.RETURN)	
+		article = driver.find_element_by_xpath('/html/body/div[6]/div/div[1]/div[1]/div[3]/div/a')
+		article.send_keys(webdriver.common.keys.Keys.RETURN)	
 
-	link = driver.current_url
+		link = driver.current_url
 
-	f.write('\n' + title)
-	f.write(': ' + link + '\n')
+		f.write('\n' + title)
+		f.write(': ' + link + '\n')
 
-	f.write('\n@GiantsArticles')
-	f.close()
+		f.write('\n@GiantsArticles')
+
+		f.close()
 	
-	#TWEET
-	with open("tweet.txt", "r") as f:
-		api.update_status(f.read())
+		#TWEET
+		with open("tweet.txt", "r") as f:
+			api.update_status(f.read())
+
+	except:
+		f.close()
+		print("The Athletic Failed")
 
 	#SET PREVIOUS TWEET
 	prevTweet = api.user_timeline('@GiantsArticles')[0].id
 	
 
 	#SF CHRONICLE-------------------------------------------------------------------------------------------------
-	f = open('tweet.txt', 'w+')
-	driver.get('https://www.sfchronicle.com/sports/giants/')
+	try:
+		f = open('tweet.txt', 'w+')
+		driver.get('https://www.sfchronicle.com/sports/giants/')
 
-	f.write('SF CHRONICLE:\n')
+		f.write('SF CHRONICLE:\n')
 
-	#ARTICLE 1
-	title = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/div/div[3]/a').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+		#ARTICLE 1
+		title = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/div/div[3]/a').text
+        	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
-	article = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/div/div[3]/a')
-	article.send_keys(webdriver.common.keys.Keys.RETURN)
+		article = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/div/div[3]/a')
+		article.send_keys(webdriver.common.keys.Keys.RETURN)
 
-	link = driver.current_url
+		link = driver.current_url
 
-	f.write('\n' + title)
-	f.write(': ' + link + '\n')
+		f.write('\n' + title)
+		f.write(': ' + link + '\n')
 	
-	#ARTICLE 2
-	driver.get('https://www.sfchronicle.com/sports/giants/')
+		#ARTICLE 2
+		driver.get('https://www.sfchronicle.com/sports/giants/')
 
-	title = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/ul/li[1]/p/a').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+		title = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/ul/li[1]/p/a').text
+        	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
-	article = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/ul/li[1]/p/a')
-	article.send_keys(webdriver.common.keys.Keys.RETURN)
+		article = driver.find_element_by_xpath('/html/body/main/div[1]/div[1]/div/section/div/div/div/ul/li[1]/p/a')
+		article.send_keys(webdriver.common.keys.Keys.RETURN)
 
-	link = driver.current_url
+		link = driver.current_url
 
-	f.write('\n' + title)
-	f.write(': ' + link + '\n')
+		f.write('\n' + title)
+		f.write(': ' + link + '\n')
 
-	f.close()
+		f.close()
 	
-	#TWEET IN THREAD
-        with open("tweet.txt", "r") as f:
-		api.update_status(f.read(), in_reply_to_status_id=prevTweet)
-	
+		#TWEET IN THREAD
+        	with open("tweet.txt", "r") as f:
+			api.update_status(f.read(), in_reply_to_status_id=prevTweet)
+	except:
+		f.close()
+		print("SF Chronicle Failed")
 
 	#MERCURY NEWS-------------------------------------------------------------------------------------------------
 	
@@ -155,121 +164,134 @@ def main():
 
 	
 	#NBCSBayArea--------------------------------------------------------------------------------------------------
-	f = open('tweet.txt', 'w+')
-	driver.get('https://www.nbcsports.com/bayarea/giants')
+	try:
+		f = open('tweet.txt', 'w+')
+		driver.get('https://www.nbcsports.com/bayarea/giants')
 	
-	f.write('NBCS Bay Area:\n')
+		f.write('NBCS Bay Area:\n')
 	
-	#ARTICLE 1
-	title = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[1]/a').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+		#ARTICLE 1
+		title = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[1]/a').text
+        	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
-	article = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[1]/a')
-	article.send_keys(webdriver.common.keys.Keys.RETURN)
+		article = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[1]/a')
+		article.send_keys(webdriver.common.keys.Keys.RETURN)
 
-	link = driver.current_url
+		link = driver.current_url
 
-	f.write('\n' + title)
-	f.write(': ' + link + '\n')
+		f.write('\n' + title)
+		f.write(': ' + link + '\n')
 	
-	#ARTICLE 2
-	driver.get('https://www.nbcsports.com/bayarea/giants')
+		#ARTICLE 2
+		driver.get('https://www.nbcsports.com/bayarea/giants')
 	
-	title = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[2]/a').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+		title = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[2]/a').text
+        	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
-	article = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[2]/a')
-	article.send_keys(webdriver.common.keys.Keys.RETURN)
+		article = driver.find_element_by_xpath('/html/body/div[2]/div[1]/main/div/div/div[1]/div/article/div/div[1]/header/div[2]/div/div[2]/a')
+		article.send_keys(webdriver.common.keys.Keys.RETURN)
 
-	link = driver.current_url
+		link = driver.current_url
 
-	f.write('\n' + title)
-	f.write(': ' + link + '\n')
+		f.write('\n' + title)
+		f.write(': ' + link + '\n')
 
-	f.close()
+		f.close()
 	
-	#TWEET IN THREAD
-        with open("tweet.txt", "r") as f:
-		api.update_status(f.read(), in_reply_to_status_id=prevTweet)
-
+		#TWEET IN THREAD
+        	with open("tweet.txt", "r") as f:
+			api.update_status(f.read(), in_reply_to_status_id=prevTweet)
+	except:
+		f.close()
+		print("SF Chronicle Failed")
 
 	#KNBR---------------------------------------------------------------------------------------------------------
-	f = open('tweet.txt', 'w+')
-	driver.get('https://www.knbr.com/giantsnews/')
+	try:
+		f = open('tweet.txt', 'w+')
+		driver.get('https://www.knbr.com/giantsnews/')
 
-	f.write('KNBR:\n')
+		f.write('KNBR:\n')
 
-	#ARTICLE 1
-	article = driver.find_element_by_xpath('/html/body/div[3]/div/section[2]/section[1]/div[2]/div/div[1]/div[1]/article[1]/a')
-	article.send_keys(webdriver.common.keys.Keys.RETURN)
+		#ARTICLE 1
+		article = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/section[2]/section[1]/div[2]/div/div[1]/div[1]/article[1]/header/h2/a')
+		article.send_keys(webdriver.common.keys.Keys.RETURN)
 
-	title = driver.find_element_by_xpath('/html/body/div[3]/div/section[2]/section[1]/div[1]/div/div/article/header/h1').text
-	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+		title = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/section[2]/section[1]/div[1]/div/div/article/header/h1').text
+		title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 	
-	link = driver.current_url
+		link = driver.current_url
 
-	f.write('\n' + title)
-	f.write(': ' + link + '\n')
+		f.write('\n' + title)
+		f.write(': ' + link + '\n')
 
-	#ARTICLE 2
-	driver.get('https://www.knbr.com/giantsnews')
+		#ARTICLE 2
+		driver.get('https://www.knbr.com/giantsnews')
 	
-	article = driver.find_element_by_xpath('/html/body/div[3]/div/section[2]/section[1]/div[2]/div/div[1]/div[1]/article[2]/a')
-	article.send_keys(webdriver.common.keys.Keys.RETURN)
+		article = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/section[2]/section[1]/div[2]/div/div[1]/div[1]/article[2]/header/h2/a')
+		article.send_keys(webdriver.common.keys.Keys.RETURN)
 
-	title = driver.find_element_by_xpath('/html/body/div[3]/div/section[2]/section[1]/div[1]/div/div/article/header/h1').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)	
+		title = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/section[2]/section[1]/div[1]/div/div/article/header/h1').text
+        	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)	
 	
-	link = driver.current_url
+		link = driver.current_url
 
-        f.write('\n' + title)
-        f.write(': ' + link)	
+        	f.write('\n' + title)
+        	f.write(': ' + link)	
 
-	f.close()
+		f.close()
 	
-	#TWEET IN THREAD
-	with open("tweet.txt", "r") as f:
-		api.update_status(f.read(), in_reply_to_status_id=prevTweet)
+		#TWEET IN THREAD
+		with open("tweet.txt", "r") as f:
+			api.update_status(f.read(), in_reply_to_status_id=prevTweet)
+	except:
+		f.close()
+		print("KNBR Failed")
+
 
 #AroundTheFoghorn-----------------------------------------------------------------------------------------
+
+	try:	
+		f = open('tweet.txt', 'w+')
+		driver.get('https://aroundthefoghorn.com/')
+
+		f.write('Around The Foghorn:\n')
+
+		#ARTICLE 1
+		title = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[1]/div/header/h2/a').text
+        	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+
+		article = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[1]/div/header/h2/a')
+		article.send_keys(webdriver.common.keys.Keys.RETURN)
+
+		link = driver.current_url
+
+		f.write('\n' + title)
+		f.write(': ' + link + '\n')
 	
-	f = open('tweet.txt', 'w+')
-	driver.get('https://aroundthefoghorn.com/')
+		#ARTICLE 2
+		driver.get('https://aroundthefoghorn.com/')
 
-	f.write('Around The Foghorn:\n')
+		title = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[2]/div/header/h2/a').text
+        	title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
 
-	#ARTICLE 1
-	title = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[1]/div/header/h2/a').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
+		article = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[2]/div/header/h2/a')
+		article.send_keys(webdriver.common.keys.Keys.RETURN)
 
-	article = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[1]/div/header/h2/a')
-	article.send_keys(webdriver.common.keys.Keys.RETURN)
+		link = driver.current_url
 
-	link = driver.current_url
+		f.write('\n' + title)
+		f.write(': ' + link + '\n')
 
-	f.write('\n' + title)
-	f.write(': ' + link + '\n')
+		f.close()	
+
+		#TWEET IN THREAD
+		with open("tweet.txt", "r") as f:
+			api.update_status(f.read(), in_reply_to_status_id=prevTweet)
 	
-	#ARTICLE 2
-	driver.get('https://aroundthefoghorn.com/')
+	except:
+		f.close()
+		print("ATF Failed")
 
-	title = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[2]/div/header/h2/a').text
-        title = re.sub(u"(\xf3|\u2014|\u2018|\u2019|\u2026)", "'", title)
-
-	article = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[1]/div/div[2]/div/header/h2/a')
-	article.send_keys(webdriver.common.keys.Keys.RETURN)
-
-	link = driver.current_url
-
-	f.write('\n' + title)
-	f.write(': ' + link + '\n')
-
-	f.close()	
-
-	#TWEET IN THREAD
-	with open("tweet.txt", "r") as f:
-		api.update_status(f.read(), in_reply_to_status_id=prevTweet)
-	
 	driver.quit()	
 	
 main()
