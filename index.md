@@ -1,4 +1,7 @@
 # Preface
+
+[Code](https://github.com/ayelrod/GiantsArticles)
+
 My favorite baseball team is the San Francisco Giants. Having grown up in the Bay Area, it was impossible to escape them because they dominated baseball from 2010-2014. I am a huge fan of the team, so I decided to create a twitter bot that tweets out the daily articles from different sites that cover the SF Giants. You can check it out [@GiantsArticles](https://twitter.com/GiantsArticles) on Twitter!
 
 The bot is currently not tweeting anymore because it became a burden. Ideally, I would have server space that could run the python script automatically, but that costs money and there are too many potential errors. So, I was running the python script manually everyday to tweet out the articles. I stopped doing this because it became too much to maintain. However, the code is still available for you to check out!
