@@ -1,37 +1,21 @@
-## Welcome to GitHub Pages
+# Preface
+My favorite baseball team is the San Francisco Giants. Having grown up in the Bay Area, it was impossible to escape them because they dominated baseball from 2010-2014. I am a huge fan of the team, so I decided to create a twitter bot that tweets out the daily articles from different sites that cover the SF Giants. You can check it out [@GiantsArticles](https://twitter.com/GiantsArticles) on Twitter!
 
-You can use the [editor on GitHub](https://github.com/ayelrod/GiantsArticles/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+The bot is currently not tweeting anymore because it became a burden. Ideally, I would have server space that could run the python script automatically, but that costs money and there are too many potential errors. So, I was running the python script manually everyday to tweet out the articles. I stopped doing this because it became too much to maintain. However, the code is still available for you to check out!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Project
+## Coding 
+This twitter bot uses [Selenium](https://www.selenium.dev/) for web scraping and uses a python library called [Tweepy](https://www.tweepy.org/) for making the API calls to Twitter. I made this bot quite early in my computer science career, so there are definitely some shortcomings that I will discuss. But for now, lets look at how I made the bot.
 
-### Markdown
+The first step was to get the articles from the internet. I have a list of the websites that I scraped, chosen by popularity and credibility. There are like 4 or 5 websites on there and they all post articles daily, some more than others. So I navigate to those websites using Selenium and then I collect information about the first two articles displayed. I first get the title of the article by using the full XPath of the article. Then I click on the title using Selenium, to navigate to the actual article. I then copy the link of the article using Selenium. I write the title and article to a text file and then repeat this process to get the next article's information.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Once I have the information, I use the Twitter API and Tweepy to tweet out the contents of the text file. If that is the first tweet I make, I grab the tweet ID so that I can set subsequent tweets to be replies to the first tweet. I then go on to the next website and do this process over again. It is really quite simple. 
 
-```markdown
-Syntax highlighted code block
+I added some error handling and some security to the code a little later on. I had to catch errors and swallow them because if one website returned an error, then all the websites that came after that would be ignored because the program exited. There were quite a bit of errors, so this really helped. When I uploaded the code to Github, I needed to make sure that the API keys weren't visible to the public. So, I put these in a text file that was not uploaded to Github and just read them from that file.
 
-# Header 1
-## Header 2
-### Header 3
+Another thing I had to worry about was exceeding the Twitter APIs tweeting rate. I initially ran this script twice a day, so I was sending about 10 tweets a day. Apparently, that exceeds the limit for tweeting from an API, and I got a temporary ban. So, I only ran the script once a day after that.
 
-- Bulleted
-- List
+**The code can be found [here](https://github.com/ayelrod/GiantsArticles/blob/main/giantsArticles.py)**
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ayelrod/GiantsArticles/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Shortcomings
+One of the main reasons I stopped running this script was because of the amount of errors I got
