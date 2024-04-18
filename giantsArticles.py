@@ -1,11 +1,11 @@
-import re
 import tweepy
 import requests
+import json
 from bs4 import BeautifulSoup
 from lxml import etree
 
 API_KEYS_FILE = "api_keys.txt"
-DB_FILE = "history.txt"
+DB_FILE = "history.json"
 HEADER = {
     'referer':'https://www.google.com/'
 }
@@ -66,16 +66,26 @@ def get_latest_article(website: Website) -> Article:
 	
 	return Article(title.strip(), link.strip())
 
-def already_posted(article: Article, history: dict) -> bool:
-	# TODO
+def already_posted(site: str, article: Article, history: dict) -> bool:
+	if not site in history:
+		history[site] = article.link
+		return False
+	if history[site] == article.link:
+		return True
+	history[site] = article.link
 	return False
 
 def read_history() -> dict:
-	# TODO
-	return
+	try:
+		with open(DB_FILE, 'r') as file:
+			history = json.load(file)
+	except:
+		history = {}
+	return history
 
 def write_history(history: dict):
-	# TODO
+	with open(DB_FILE, 'w+') as file:
+		json.dump(history, file)
 	return
 
 def get_api():
@@ -105,7 +115,7 @@ def main():
 			article = get_latest_article(site)
 			if article == None:
 				continue
-			if already_posted(article, history):
+			if already_posted(site.name, article, history):
 				continue
 			post(article, x_api)
 		except Exception as e:
