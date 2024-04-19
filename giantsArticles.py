@@ -105,17 +105,22 @@ def get_api():
 
 def post(article, api):
 	# TODO
+	print("Posting link to", article.link)
+	text = article.title + "\n\n" + article.link
+	api.create_tweet(text=text)
 	return
 
 def main():
 	history = read_history()
 	x_api = get_api()
 	for site in sites:
+		print("\nProcessing", site.name)
 		try:
 			article = get_latest_article(site)
 			if article == None:
 				continue
 			if already_posted(site.name, article, history):
+				print("Duplicate article for", site.name, "--", article.link)
 				continue
 			post(article, x_api)
 		except Exception as e:
