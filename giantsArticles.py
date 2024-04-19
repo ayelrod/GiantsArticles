@@ -104,7 +104,6 @@ def get_api():
 	return client
 
 def post(article, api):
-	# TODO
 	print("Posting link to", article.link)
 	text = article.title + "\n\n" + article.link
 	api.create_tweet(text=text)
