@@ -86,6 +86,7 @@ def read_history() -> dict:
 def write_history(history: dict):
 	with open(DB_FILE, 'w+') as file:
 		json.dump(history, file)
+	print("Successfully saved post history!")
 	return
 
 def get_api():
